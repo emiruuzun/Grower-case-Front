@@ -6,10 +6,8 @@ import {
   FaSignOutAlt,
   FaBars,
   FaAngleRight,
-  FaUserCircle,
   FaHome,
   FaTimes,
-  FaProjectDiagram,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 

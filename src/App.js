@@ -10,7 +10,7 @@ import KayıtOl from "./pages/Register/index";
 import Giris from "./pages/Login/index";
 import Dashboard from "./pages/Dashboard/index.jsx";
 import ProjectSelector from "./pages/Dashboard/ProjectSelector.jsx";
-import ProjectAnalysis from "./pages/ProjectAnalysis/index.jsx";
+import ProjectAnalysis from "./pages/Dashboard/ProjectAnalysis/index.jsx";
 
 const userRole = () => {
   const token = getCookie("access_token");
