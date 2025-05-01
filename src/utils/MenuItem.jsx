@@ -1,9 +1,4 @@
-import {
-  FaChartBar,
-  FaProjectDiagram,
-  FaHome,
-  FaUserCircle,
-} from "react-icons/fa";
+import { FaProjectDiagram, FaHome, FaUserCircle } from "react-icons/fa";
 
 export const menuItem = [
   {
@@ -16,7 +11,7 @@ export const menuItem = [
       },
       {
         name: "Projelerim",
-        slug: "projects",
+        slug: "ProjectSelector",
         icon: FaProjectDiagram,
       },
       {

@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import KayıtOl from "./pages/Register/index";
 import Giris from "./pages/Login/index";
 import Dashboard from "./pages/Dashboard/index.jsx";
-import ProjectSelector from "./pages/Dashboard/ProjectSelector.jsx";
+import ProjectSelector from "./pages/Dashboard/ProjectList/ProjectSelector.jsx";
 import ProjectAnalysis from "./pages/Dashboard/ProjectAnalysis/index.jsx";
 
 const userRole = () => {

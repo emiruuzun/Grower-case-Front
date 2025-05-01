@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Dashboardlayout from "../../layout/DashboardLayout";
+import Dashboardlayout from "../../../layout/DashboardLayout";
 import { useNavigate } from "react-router-dom";
-import { getProjects } from "../../services/project";
-import ProjectCard from "../../components/ProjectCard";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import { getProjects } from "../../../services/project";
+import ProjectCard from "../../../components/ProjectCard";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 function Dashboard() {
   const [projects, setProjects] = useState([]);
