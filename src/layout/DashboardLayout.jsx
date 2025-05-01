@@ -7,31 +7,19 @@ import {
   FaBars,
   FaAngleRight,
   FaUserCircle,
-  FaUsersCog,
-  FaClipboardList,
-  FaBuilding,
-  FaChartBar,
-  FaBullhorn,
   FaHome,
   FaTimes,
-  FaFileAlt,
+  FaProjectDiagram,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Kategori ikonlarını tanımlayalım
 const categoryIcons = {
-  Profil: FaUserCircle,
-  "Personel Yönetimi": FaUsersCog,
-  "İş Yönetimi": FaClipboardList,
-  "Firma Yönetimi": FaBuilding,
-  Analizler: FaChartBar,
-  İletişim: FaBullhorn,
-  Raporlama: FaFileAlt,
+  "Ana Menü": FaHome,
 };
 
-function AdminDashboardLayout({ children }) {
+function DashboardLayout({ children }) {
   const navigate = useNavigate();
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState({});
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -109,7 +97,7 @@ function AdminDashboardLayout({ children }) {
                     <FaHome size={24} />
                   </NavLink>
                   <h1 className="text-xl font-bold text-indigo-400 hidden md:block">
-                    Admin Panel
+                    SEO Panel
                   </h1>
                 </div>
                 {isSmallScreen && (
@@ -176,7 +164,7 @@ function AdminDashboardLayout({ children }) {
                 className="flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200"
               >
                 <FaSignOutAlt className="mr-2" />
-                Logout
+                Çıkış Yap
               </button>
             </motion.div>
           )}
@@ -193,4 +181,4 @@ function AdminDashboardLayout({ children }) {
   );
 }
 
-export default AdminDashboardLayout;
+export default DashboardLayout;
