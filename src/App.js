@@ -10,6 +10,7 @@ import KayıtOl from "./pages/Register/index";
 import Giris from "./pages/Login/index";
 import Dashboard from "./pages/Dashboard/index.jsx";
 import ProjectSelector from "./pages/Dashboard/ProjectSelector.jsx";
+import ProjectAnalysis from "./pages/ProjectAnalysis/index.jsx";
 
 const userRole = () => {
   const token = getCookie("access_token");
@@ -96,7 +97,14 @@ function App() {
             </PrivateRoute>
           }
         />
-        ProjectSelector
+        <Route
+          path="/project/:projectId/analysis"
+          element={
+            <PrivateRoute>
+              <ProjectAnalysis />
+            </PrivateRoute>
+          }
+        />
         {/* Catch all route */}
         <Route path="*" element={<Navigate to="/giris" replace />} />
       </Routes>
