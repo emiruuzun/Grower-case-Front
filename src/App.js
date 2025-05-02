@@ -11,6 +11,7 @@ import Giris from "./pages/Login/index";
 import Dashboard from "./pages/Dashboard/index.jsx";
 import ProjectSelector from "./pages/Dashboard/ProjectList/ProjectSelector.jsx";
 import ProjectAnalysis from "./pages/Dashboard/ProjectAnalysis/index.jsx";
+import Profile from "./pages/Profile/index.jsx";
 
 const userRole = () => {
   const token = getCookie("access_token");
@@ -94,6 +95,14 @@ function App() {
           element={
             <PrivateRoute>
               <ProjectSelector />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
             </PrivateRoute>
           }
         />
