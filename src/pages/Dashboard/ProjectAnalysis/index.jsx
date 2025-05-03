@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Dashboardlayout from "../../../layout/DashboardLayout";
 import { getSeoAnalysis } from "../../../services/project";
@@ -20,11 +20,7 @@ function ProjectAnalysis() {
   const { projectId } = useParams();
   const [timeRange, setTimeRange] = useState("28days");
 
-  useEffect(() => {
-    fetchAnalysisData();
-  }, [projectId]);
-
-  const fetchAnalysisData = async () => {
+  const fetchAnalysisData = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getSeoAnalysis(projectId);
@@ -36,7 +32,11 @@ function ProjectAnalysis() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [projectId]);
+
+  useEffect(() => {
+    fetchAnalysisData();
+  }, [fetchAnalysisData]);
 
   const changeVisualization = (metric, type) => {
     setVisualizationTypes((prev) => ({

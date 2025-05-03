@@ -1,10 +1,13 @@
 import { toast } from "react-toastify";
 import { getCookie } from "../utils/cookie-manager";
 
+// .env'den gelen API URL'si
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const getProjects = async () => {
   try {
     const apiRequest = await fetch(
-      "http://localhost:8000/v1/api/project/project-list",
+      `${API_URL}/v1/api/project/project-list`,
       {
         method: "GET",
         headers: {
@@ -16,7 +19,7 @@ export const getProjects = async () => {
     );
 
     const data = await apiRequest.json();
-    
+
     if (Array.isArray(data)) {
       toast.success("Projeler başarıyla yüklendi", { autoClose: 2000 });
       return data;
@@ -34,8 +37,7 @@ export const getProjects = async () => {
 export const getSeoAnalysis = async (projectId) => {
   try {
     const apiRequest = await fetch(
-      `http://localhost:8000/v1/api/project/seo-analysis/${projectId}`,
-      
+      `${API_URL}/v1/api/project/seo-analysis/${projectId}`,
       {
         method: "GET",
         headers: {
@@ -45,9 +47,9 @@ export const getSeoAnalysis = async (projectId) => {
         credentials: "include",
       }
     );
-    console.log(projectId)
+
     const data = await apiRequest.json();
-    
+
     if (data) {
       toast.success("SEO analiz verileri yüklendi", { autoClose: 2000 });
       return data;

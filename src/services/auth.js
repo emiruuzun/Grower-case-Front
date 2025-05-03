@@ -1,16 +1,16 @@
 import { toast } from "react-toastify";
 import { setCookie, deleteCookie, getCookie } from "../utils/cookie-manager";
 
+// .env'den gelen API URL'si
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const registerUser = async (user, navigate) => {
   try {
-    const apiRequest = await fetch(
-      "http://localhost:8000/v1/api/auth/register",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
-      }
-    );
+    const apiRequest = await fetch(`${API_URL}/v1/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
 
     const data = await apiRequest.json();
     if (data.success) {
@@ -33,7 +33,7 @@ export const loginUser = async (user, navigate) => {
   const { name, email, password } = user;
 
   try {
-    const apiRequest = await fetch("http://localhost:8000/v1/api/auth/login", {
+    const apiRequest = await fetch(`${API_URL}/v1/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
@@ -63,7 +63,7 @@ export const loginUser = async (user, navigate) => {
 
 export const logoutUser = async (navigate) => {
   try {
-    const apiRequest = await fetch("http://localhost:8000/v1/api/auth/logout", {
+    const apiRequest = await fetch(`${API_URL}/v1/api/auth/logout`, {
       method: "GET",
       headers: {
         Authorization: `Bearer: ${getCookie("access_token")}`,
@@ -87,56 +87,5 @@ export const logoutUser = async (navigate) => {
     console.error("API request failed:", error);
     toast.error("Logout failed");
     throw new Error("API request failed");
-  }
-};
-
-export const deleteUser = async (navigate) => {
-  try {
-    const apiRequest = await fetch("http://localhost:8000/v1/api/auth/delete", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer: ${getCookie("access_token")}`,
-      },
-      credentials: "include",
-    });
-
-    const data = await apiRequest.json();
-    if (data.success) {
-      localStorage.removeItem("user");
-      toast.success("Delete Acount successful", { autoClose: 2000 });
-      setTimeout(() => {
-        navigate("/giris");
-      }, 2000);
-    } else {
-      toast.error(data.message);
-    }
-    return data;
-  } catch (error) {
-    console.error("API request failed:", error);
-    toast.error("Delete failed");
-    throw new Error("API request failed");
-  }
-};
-
-export const feed = async () => {
-  try {
-    const apiRequest = await fetch("http://localhost:8000/v1/api/auth/feed", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer: ${getCookie("access_token")}`,
-      },
-      credentials: "include",
-    });
-
-    if (!apiRequest.ok) {
-      throw new Error(`API request failed with status: ${apiRequest.status}`);
-    }
-
-    const data = await apiRequest.json();
-    return data;
-  } catch (error) {
-    console.error("API request failed:", error);
-    toast.error(`Feed failed: ${error.message}`);
-    throw error;
   }
 };
